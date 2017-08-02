@@ -1,0 +1,8 @@
+<h1> Create a new Catagory!</h1>
+
+  <%= form_for [:admin, @category] do |form| %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+  <% end %>
