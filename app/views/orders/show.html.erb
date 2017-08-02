@@ -8,6 +8,25 @@
     <h4>Thank you for your order!</h4>
   </div>
 
+  <div class="order-information">
+    <ul>
+      <% @items.each do |item| %>
+      <div class="item">
+        <li>Item Name: <%= item.product.name %></li>
+        <li>Item Description: <%= item.product.description %></li>
+        <li>Preview: <%= image_tag item.product.image, class: 'order-img' %> </li>
+        <li>Quantity: <%= item.quantity %></li>
+        <li>Total Price: <%=item.total_price_cents %></li>
+      </div>
+      <% end %>
+    </ul>
+
+    <span> Total Order Cost: <%= @order.total_cents %> </span>
+    <br>
+    <span> Order Email: <%= @order.email %> </span>
+
+  </div>
+
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
