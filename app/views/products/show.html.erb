@@ -55,7 +55,6 @@
     <div class='reviews'>
       <% @reviews.each do |review| %>
         <div>
-
           <div>
             User Name: <%= review.user.first_name %>
           </div>
@@ -65,10 +64,14 @@
           <div>
             Review: <%= review.description %>
           </div>
-
-          <br />
-
         </div>
+
+        <% if current_user.id == review.user.id %>
+
+        <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete%>
+        <br />
+        <% end %>
+
       <% end %>
     </div>
 
