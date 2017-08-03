@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-    @reviews = Review.where(id: @product.id)
+    @reviews = @product.reviews.order(created_at: :desc)
+    @revurl = "/products/#{@product.id}/reviews"
   end
 
 end
