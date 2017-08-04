@@ -46,13 +46,17 @@
 
     <% else %>
 
-      <span>Log-In to Write a Review!</span>
-      <br />
+      <div class="row">
+        <div class = "col-md-6">
+            <%= link_to "Log-In", "/login" %> to write a review!
+        </div>
+      </div>
+
     <% end %>
 
     <br />
 
-    <div class='reviews'>
+    <div>
       <%= render @reviews %>
     </div>
 

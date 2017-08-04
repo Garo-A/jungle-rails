@@ -1,5 +1,7 @@
+
 <% if current_user == nil %>
-<div class="jumbotron">
+
+<div class="jumbotron review">
   <div>
     User Name:
     <%= review.user.first_name %>
@@ -16,7 +18,7 @@
 </div>
 
 <% elsif current_user.id == review.user.id %>
-<div class="jumbotron">
+<div class="jumbotron review">
   <div>
     User Name:
     <%= review.user.first_name %>
