@@ -1,0 +1,35 @@
+<% if current_user == nil %>
+<div class="jumbotron">
+  <div>
+    User Name:
+    <%= review.user.first_name %>
+  </div>
+  <div>
+    Rating:
+    <%= review.rating %>
+    / 5
+  </div>
+  <div>
+    Review:
+    <%= review.description %>
+  </div>
+</div>
+
+<% elsif current_user.id == review.user.id %>
+<div class="jumbotron">
+  <div>
+    User Name:
+    <%= review.user.first_name %>
+  </div>
+  <div>
+    Rating:
+    <%= review.rating %>
+    / 5
+  </div>
+  <div>
+    Review:
+    <%= review.description %>
+  </div>
+  <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete%>
+</div>
+<% end %>
