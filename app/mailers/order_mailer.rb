@@ -5,6 +5,7 @@ class OrderMailer < ApplicationMailer
   def order_email(order)
     puts "ORDER MAILER IS RUNNING"
     @order = order
+    @items = @order.line_items
     puts "ORDER EMAIL: #{@order.email}"
     mail(to: @order.email, subject: "Your Jungle Order Details!")
  end

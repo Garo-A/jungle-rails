@@ -1,6 +1,22 @@
 
 <h1> Here are your Jungle Order Details</h1>
 
-<span> Order Number: <%= @order.id %>> </span>
+<p> Order Number: <%= @order.id %>> </p>
+
+<p>
+  You Ordered
+</p>
+
+<ul>
+  <% @items.each do |item| %>
+    <li>
+      <%= item.product.name %>
+    </li>
+  <% end %>
+</ul>
+
+<p>
+  Your total was: <%= order.total_price_cents %>
+</p>
 
 <span>Thank you for Shopping with us! :)</span>
