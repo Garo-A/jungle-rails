@@ -47,31 +47,42 @@
     <% else %>
 
       <span>Log-In to Write a Review!</span>
-
+      <br />
     <% end %>
 
     <br />
 
     <div class='reviews'>
       <% @reviews.each do |review| %>
-        <div>
+        <% if current_user == nil %>
           <div>
-            User Name: <%= review.user.first_name %>
-          </div>
-          <div>
-            Rating: <%= review.rating %> / 5
-          </div>
-          <div>
-            Review: <%= review.description %>
+            <div>
+              User Name: <%= review.user.first_name %>
+            </div>
+            <div>
+              Rating: <%= review.rating %> / 5
+            </div>
+            <div>
+              Review: <%= review.description %>
+            </div>
           </div>
 
-        <% if current_user.id == review.user.id %>
-          <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete%>
-          <% end %>
-        </div>
-        <br />
-      <% end %>
-
+        <% elsif current_user.id == review.user.id %>
+          <div>
+            <div>
+              User Name: <%= review.user.first_name %>
+            </div>
+            <div>
+              Rating: <%= review.rating %> / 5
+            </div>
+            <div>
+              Review: <%= review.description %>
+            </div>
+            <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete%>
+          </div>
+        <% end %>
+      <br />
+    <% end %>
     </div>
 
   </article>
