@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
 
   def create_order(stripe_charge)
     order = Order.new(
-      email: params[:stripeEmail],
+      email: set_email,
       total_cents: cart_total,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
@@ -56,6 +56,14 @@ class OrdersController < ApplicationController
     end
     order.save!
     order
+  end
+
+  def set_email
+    if current_user
+      current_user.email
+    else
+      "none@none.com"
+    end
   end
 
   # returns total in cents not dollars (stripe uses cents as well)

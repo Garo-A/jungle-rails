@@ -4,29 +4,42 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="order-summary jumbotron">
+        <h4>Thank you for your order!</h4>
+      </div>
+    </div>
   </div>
+
 
   <div class="order-information">
-    <ul>
-      <% @items.each do |item| %>
-      <div class="item">
-        <li>Item Name: <%= item.product.name %></li>
-        <li>Item Description: <%= item.product.description %></li>
-        <li>Preview: <%= image_tag item.product.image, class: 'order-img' %> </li>
-        <li>Quantity: <%= item.quantity %></li>
-        <li>Total Price: <%=item.total_price_cents %></li>
+    <% @items.each do |item| %>
+    <div class="item jumbotron">
+      <h3 class="name"><%= item.product.name %> </h3>
+      <div>
+        <%= image_tag item.product.image, class: 'img-rounded order-img' %>
       </div>
-      <% end %>
-    </ul>
+      <br />
+      <ul class="list-group">
+        <li class="list-group-item"> <b>Description: </b> <%= item.product.description %></li>
+        <li class="list-group-item"> <b>Quantity: </b><%= item.quantity %></li>
+        <li class="list-group-item"> <b>Total Price: </b><%=humanized_money_with_symbol item.total_price_cents %></li>
+      </ul>
+    </div>
+    <% end %>
 
-    <span> Total Order Cost: <%= @order.total_cents %> </span>
-    <br>
-    <span> Order Email: <%= @order.email %> </span>
+    <div class="row">
+      <div class ="col-md-6">
+        <div class="jumbotron">
+          <b>Total Order Cost: </b><%=humanized_money_with_symbol @order.total_cents %>
+          <br />
+          <b>Order Email: </b> <%= @order.email %>
+        </div>
+          <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
+      </div>
+    </div>
 
   </div>
-
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
