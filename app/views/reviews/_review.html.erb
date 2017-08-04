@@ -1,18 +1,18 @@
 
 <% if current_user == nil %>
   <div class="row">
-    <div class="review col-md-3">
+    <div class="jumbotron review col-md-4">
       <div>
-        User Name:
+        <b>User Name:</b>
         <%= review.user.first_name %>
       </div>
       <div>
-        Rating:
+        <b>Rating: </b>
         <%= review.rating %>
         / 5
       </div>
       <div>
-        Review:
+        <b>Review:</b>
         <%= review.description %>
       </div>
     </div>
@@ -20,18 +20,18 @@
 
 <% else %>
   <div class = "row">
-    <div class="review col-md-3">
+    <div class="jumbotron review col-md-4">
       <div>
-        User Name:
+        <b>User Name:</b>
         <%= review.user.first_name %>
       </div>
       <div>
-        Rating:
+        <b>Rating: </b>
         <%= review.rating %>
         / 5
       </div>
       <div>
-        Review:
+        <b>Review:</b>
         <%= review.description %>
       </div>
       <% if current_user.email == review.user.email %>
