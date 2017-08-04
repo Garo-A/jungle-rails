@@ -1,37 +1,42 @@
 
 <% if current_user == nil %>
+  <div class="row">
+    <div class="review col-md-3">
+      <div>
+        User Name:
+        <%= review.user.first_name %>
+      </div>
+      <div>
+        Rating:
+        <%= review.rating %>
+        / 5
+      </div>
+      <div>
+        Review:
+        <%= review.description %>
+      </div>
+    </div>
+  </div>
 
-<div class="jumbotron review">
-  <div>
-    User Name:
-    <%= review.user.first_name %>
+<% else %>
+  <div class = "row">
+    <div class="review col-md-3">
+      <div>
+        User Name:
+        <%= review.user.first_name %>
+      </div>
+      <div>
+        Rating:
+        <%= review.rating %>
+        / 5
+      </div>
+      <div>
+        Review:
+        <%= review.description %>
+      </div>
+      <% if current_user.email == review.user.email %>
+        <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger del-btn', method: :delete%>
+      <% end %>
+    </div>
   </div>
-  <div>
-    Rating:
-    <%= review.rating %>
-    / 5
-  </div>
-  <div>
-    Review:
-    <%= review.description %>
-  </div>
-</div>
-
-<% elsif current_user.id == review.user.id %>
-<div class="jumbotron review">
-  <div>
-    User Name:
-    <%= review.user.first_name %>
-  </div>
-  <div>
-    Rating:
-    <%= review.rating %>
-    / 5
-  </div>
-  <div>
-    Review:
-    <%= review.description %>
-  </div>
-  <%= link_to fa_icon('trash'), product_review_path(@product, review), class: 'btn btn-sm btn-danger', method: :delete%>
-</div>
 <% end %>
