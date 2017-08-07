@@ -8,7 +8,7 @@ RSpec.describe Product, type: :model do
 
      it "Should not save if there is not name" do
        @product = Product.new(
-        price: $200,
+        price: 200,
         quantity: 40,
         category: @category
        )
