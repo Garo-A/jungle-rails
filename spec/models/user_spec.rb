@@ -116,7 +116,7 @@ RSpec.describe User, type: :model do
 
   describe ".authenticate_with_credentials"do
 
-    it "Should return a user object when correct email and password combinations are imputted" do
+    it "Should return a user object when correct email and password combinations are inputted" do
       @user = @testuser.authenticate_with_credentials("user@test.com", 'test')
       expect(@user).to eq(@testuser)
     end
@@ -124,6 +124,11 @@ RSpec.describe User, type: :model do
     it "Should return false if password is incorrect" do
       @user = @testuser.authenticate_with_credentials("user@test.com", "lol")
       expect(@user).to be(false)
+    end
+
+    it "Should return nil if email does not exist" do
+      @user = @testuser.authenticate_with_credentials("lololololololol@test.com", 'test')
+      expect(@user).to be(nil)
     end
 
     it "Should be case insensitive for email" do
