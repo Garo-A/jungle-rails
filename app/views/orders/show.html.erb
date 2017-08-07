@@ -24,7 +24,7 @@
       <ul class="list-group">
         <li class="list-group-item"> <b>Description: </b> <%= item.product.description %></li>
         <li class="list-group-item"> <b>Quantity: </b><%= item.quantity %></li>
-        <li class="list-group-item"> <b>Total Price: </b><%=humanized_money_with_symbol item.total_price_cents %></li>
+        <li class="list-group-item"> <b>Total Price: </b><%=humanized_money_with_symbol item.total_price_cents/100 %></li>
       </ul>
     </div>
     <% end %>
@@ -32,7 +32,7 @@
     <div class="row">
       <div class ="col-md-6">
         <div class="jumbotron">
-          <b>Total Order Cost: </b><%=humanized_money_with_symbol @order.total_cents %>
+          <b>Total Order Cost: </b><%=humanized_money_with_symbol @order.total_cents/100 %>
           <br />
           <b>Order Email: </b> <%= @order.email %>
         </div>
