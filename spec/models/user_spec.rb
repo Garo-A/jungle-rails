@@ -1,17 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "Validations" do
-    before do
-      @testuser = User.new(
-        first_name: "TEST",
-        last_name: "TEST",
-        email: "user@test.com",
-        password: "test",
-        password_confirmation: "test"
-      )
-      @testuser.save
+  before do
+    @testuser = User.new(
+      first_name: "TEST",
+      last_name: "TEST",
+      email: "user@test.com",
+      password: "test",
+      password_confirmation: "test"
+    )
+    @testuser.save
   end
+
+  describe "Validations" do
 
     it "Should not save if there is no password and password confirmation." do
       @user = User.new(
@@ -112,6 +113,32 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe ".authenticate_with_credentials"do
+
+    it "Should return a user object when correct email and password combinations are imputted" do
+      @user = @testuser.authenticate_with_credentials("user@test.com", 'test')
+      expect(@user).to eq(@testuser)
+    end
+
+    it "Should return false if password is incorrect" do
+      @user = @testuser.authenticate_with_credentials("user@test.com", "lol")
+      expect(@user).to be(false)
+    end
+
+    it "Should be case insensitive for email" do
+      @user = @testuser.authenticate_with_credentials("USER@TEST.com", 'test')
+      expect(@user).to eq(@testuser)
+    end
+
+    it "Should authenticate even with spaces in front of email" do
+      @user = @testuser.authenticate_with_credentials("     user@test.com", 'test')
+      expect(@user).to eq(@testuser)
+    end
+
+
+  end
+
 end
 
 
